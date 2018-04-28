@@ -1,10 +1,10 @@
 (ns barebones.handler
-  (:require [compojure.core :refer :all]
+  (:require [barebones.security :as security :refer [wrap-security]]
+            [compojure.core :refer :all]
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [ring.middleware.json :refer [wrap-json-response wrap-json-body]]
-            [ring.util.response :refer :all]
-            [barebones.security :as security :refer [wrap-security]]))
+            [ring.util.response :refer :all]))
 
 ;; Handlers
 

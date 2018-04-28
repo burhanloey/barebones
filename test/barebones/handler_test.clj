@@ -1,7 +1,7 @@
 (ns barebones.handler-test
-  (:require [clojure.test :refer :all]
-            [ring.mock.request :as mock]
-            [barebones.handler :refer :all]))
+  (:require [barebones.handler :refer :all]
+            [clojure.test :refer :all]
+            [ring.mock.request :as mock]))
 
 (deftest test-app
   (testing "main route"
