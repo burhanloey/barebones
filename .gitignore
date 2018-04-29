@@ -8,3 +8,4 @@ pom.xml.asc
 *.class
 /.lein-*
 /.nrepl-port
+figwheel_server.log
