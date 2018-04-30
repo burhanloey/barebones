@@ -31,7 +31,7 @@
   {:builds
    [{:id "dev"
      :source-paths ["src/cljs"]
-     :figwheel true  ; TODO: Change to :on-jsload
+     :figwheel {:on-jsload "barebones.core/mount-root"}
      :compiler {:asset-path "js/compiled/out"
                 :closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}
                 :main barebones.core

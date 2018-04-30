@@ -9,6 +9,6 @@
     [:title "Admin Page"]]
    [:body
     [:h1 "Admin Dashboard"]
-    [:div.app]
+    [:div#app]
     (include-js "js/compiled/app.js")
     [:script "barebones.core.init();"]]))
