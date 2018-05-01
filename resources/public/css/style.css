@@ -12,6 +12,7 @@ body {
 
 .nav-link.active, .nav-link:hover {
     background-color: #eeeeee;
+    outline: 0;
 }
 
 #content-wrapper {
