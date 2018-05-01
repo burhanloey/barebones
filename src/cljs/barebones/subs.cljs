@@ -1,12 +1,21 @@
 (ns barebones.subs
-  (:require [re-frame.core :as rf]))
+  (:require [clojure.string :as str]
+            [re-frame.core :as rf]))
 
 (rf/reg-sub
- ::name
- (fn [db]
-   (:name db)))
-
-(rf/reg-sub
- ::active-panel
+ ::page
  (fn [db _]
-   (:active-panel db)))
+   (:page db)))
+
+(rf/reg-sub
+ ::panel
+ (fn [db _]
+   (:panel db)))
+
+(rf/reg-sub
+ ::active-navlink?
+ :<- [::panel]
+ (fn [panel [_ text]]
+   (if (= text panel)
+     "active"
+     "")))

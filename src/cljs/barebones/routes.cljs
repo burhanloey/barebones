@@ -19,6 +19,12 @@
   (secretary/set-config! :prefix "#")
 
   (defroute "/" []
-    (rf/dispatch [::events/set-active-panel :home-panel]))
+    (rf/dispatch [::events/set-panel "Dashboard"]))
+
+  (defroute "/location" []
+    (rf/dispatch [::events/set-panel "Location"]))
+
+  (defroute "/calendar" []
+    (rf/dispatch [::events/set-panel "Calendar"]))
 
   (hook-browser-navigation!))

@@ -13,10 +13,11 @@
 
 (defn mount-root []
   (rf/clear-subscription-cache!)
-  (r/render [views/main-panel] (js/document.getElementById "app")))
+  (r/render [views/app-page] (js/document.getElementById "app")))
 
 (defn ^:export init []
   (routes/app-routes)
   (rf/dispatch-sync [::events/initialize-db])
+  (rf/dispatch [::events/verify-token])
   (dev-setup)
   (mount-root))
