@@ -1,6 +1,6 @@
 (ns barebones.handler
   (:require [barebones.security :as security :refer [wrap-security]]
-            [barebones.view :as view]
+            [barebones.views :as views]
             [compojure.core :refer :all]
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
@@ -27,7 +27,7 @@
   (GET "/me" [] me))
 
 (defroutes all-routes
-  (GET "/admin" [] view/admin-page)
+  (GET "/admin" [] views/admin-page)
   (GET "/req" [] #(response %))
   (GET "/admin/login" [] login)
   (context "/admin/api/v1" [] admin-api-v1-routes)

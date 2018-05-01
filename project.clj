@@ -23,9 +23,11 @@
 
   :source-paths ["src/clj"]
 
-  :resource-paths ["resources"]
+  :resource-paths ["resources" "resources/public"]
 
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
+
+  :figwheel {:css-dirs ["resources/public/css"]}
 
   :cljsbuild
   {:builds
@@ -33,11 +35,11 @@
      :source-paths ["src/cljs"]
      :figwheel {:on-jsload "barebones.core/mount-root"}
      :compiler {:asset-path "js/compiled/out"
-                :closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}
+                ;; :closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}
                 :main barebones.core
                 :output-to "resources/public/js/compiled/app.js"
                 :output-dir "resources/public/js/compiled/out"
-                :preloads [day8.re-frame-10x.preload]
+                ;; :preloads [day8.re-frame-10x.preload]
                 :source-map-timestamp true}}
     {:id "min"
      :source-paths ["src/cljs"]
@@ -48,7 +50,7 @@
                 :pretty-print false}}]}
 
   :profiles {:dev
-             {:dependencies [[day8.re-frame/re-frame-10x "0.3.3-react16"]
+             {:dependencies [;; [day8.re-frame/re-frame-10x "0.3.3-react16"]
                              [javax.servlet/servlet-api "2.5"]
                              [ring/ring-mock "0.3.2"]]
               :plugins [[lein-figwheel "0.5.15"]]}})
