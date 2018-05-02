@@ -1,7 +1,7 @@
 (ns barebones.routes
   (:require-macros [secretary.core :refer [defroute]])
   (:import goog.History)
-  (:require [barebones.events :as events]
+  (:require [barebones.admin.events :as admin-events]
             [goog.events :as gevents]
             [goog.history.EventType :as EventType]
             [re-frame.core :as rf]
@@ -19,12 +19,12 @@
   (secretary/set-config! :prefix "#")
 
   (defroute "/" []
-    (rf/dispatch [::events/set-panel "Dashboard"]))
+    (rf/dispatch [::admin-events/set-panel "Dashboard"]))
 
   (defroute "/location" []
-    (rf/dispatch [::events/set-panel "Location"]))
+    (rf/dispatch [::admin-events/set-panel "Location"]))
 
   (defroute "/calendar" []
-    (rf/dispatch [::events/set-panel "Calendar"]))
+    (rf/dispatch [::admin-events/set-panel "Calendar"]))
 
   (hook-browser-navigation!))

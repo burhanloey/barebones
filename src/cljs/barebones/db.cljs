@@ -1,14 +1,7 @@
 (ns barebones.db
   (:require [re-frame.core :as rf]))
 
-;; App-state structure:
-
-;; {:page :admin
-;;  :token "sometoken"
-;;  :panel "Dashboard"}
-
-(def default-db {:page :loading
-                 :panel "Dashboard"})
+(def default-db {:page :loading})
 
 (rf/reg-cofx
  ::token-in-cookie

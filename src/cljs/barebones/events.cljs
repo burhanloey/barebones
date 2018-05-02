@@ -1,9 +1,12 @@
 (ns barebones.events
   (:require [ajax.core :as ajax]
             [barebones.db :as db]
+            [barebones.admin.events :as admin-events]
             [day8.re-frame.http-fx]
             [day8.re-frame.tracing :refer-macros [fn-traced]]
             [re-frame.core :as rf]))
+
+;; Events
 
 (rf/reg-event-fx
  ::initialize-db
@@ -11,12 +14,6 @@
  (fn-traced
   [{:keys [token]} _]
   {:db (assoc db/default-db :token token)}))
-
-(rf/reg-event-db
- ::set-panel
- (fn-traced
-  [db [_ panel]]
-  (assoc db :panel panel)))
 
 (rf/reg-event-db
  ::set-page

@@ -1,10 +1,14 @@
 (ns barebones.admin.subs
-  (:require [barebones.subs :as subs]
-            [re-frame.core :as rf]))
+  (:require [re-frame.core :as rf]))
+
+(rf/reg-sub
+ ::panel
+ (fn [db _]
+   (:panel db)))
 
 (rf/reg-sub
  ::active-navlink?
- :<- [::subs/panel]
+ :<- [::panel]
  (fn [panel [_ text]]
    (if (= text panel)
      "active"
