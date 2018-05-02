@@ -6,4 +6,4 @@
 (rf/reg-cofx
  ::token-in-cookie
  (fn [cofx _]
-   (assoc cofx :token "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjo1MjkxMDN9.FEU-QRtzSQi8FHyO_ywmdEYgYF_cpc_RQ8H7BshtzZE")))
+   (assoc cofx :token (second (re-find #"token=([^;]+)" (.-cookie js/document))))))
