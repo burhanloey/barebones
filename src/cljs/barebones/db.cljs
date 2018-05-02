@@ -5,10 +5,7 @@
 
 ;; {:page :admin
 ;;  :token "sometoken"
-;;  :panel "Dashboard"
-;;  :content {:solved 34
-;;            :in-progress 10
-;;            :todo 50}}
+;;  :panel "Dashboard"}
 
 (def default-db {:page :loading
                  :panel "Dashboard"})
