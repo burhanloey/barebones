@@ -6,12 +6,17 @@
             [buddy.sign.jwt :as jwt]
             [clojure.java.io :as io]
             [cprop.core :refer [load-config]]
+            [ring.middleware.anti-forgery :refer [wrap-anti-forgery]]
             [ring.util.response :refer :all]))
 
 (def conf (load-config))
 
 (def secret (:secret conf))
-(def backend (backends/jws {:secret secret}))
+(def backend (backends/session))
+
+(defn csrf-handler [req]
+  (-> (response {:status 403 :message "Invalid anti-forgery token"})
+      (status 403)))
 
 (defn unauthorized-handler [req val]
   (-> (response {:status 403 :message "Not authorized"})
@@ -37,4 +42,5 @@
   (-> handler
       (wrap-access-rules {:rules access-rules :on-error unauthorized-handler})
       (wrap-authentication backend)
-      (wrap-authorization backend)))
+      (wrap-authorization backend)
+      (wrap-anti-forgery {:error-handler csrf-handler})))

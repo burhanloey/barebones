@@ -1,3 +1,4 @@
-(ns barebones.db)
+(ns barebones.db
+  (:require [re-frame.core :as rf]))
 
-(def default-db {})
+(def default-db {:page :loading})
