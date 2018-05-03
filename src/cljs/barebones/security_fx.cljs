@@ -36,7 +36,6 @@
 ;;
 ;; (rf/reg-event-fx
 ;;  ::login
-;;  [(rf/inject-cofx :login-input)]
 ;;  (fn-traced
 ;;   [{:keys [login-input]} _]
 ;;   {:http-xhrio-xsrf {:method :post
