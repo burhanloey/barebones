@@ -19,11 +19,4 @@
                      :format (ajax/json-request-format)
                      :response-format (ajax/json-response-format {:keywords? true})
                      :on-success [::events/set-page :admin]
-                     :on-failure [::login-failed]}}))
-
-(rf/reg-event-db
- ::login-failed
- (fn-traced
-  [db _]
-  (js/console.log "Ehh")
-  db))
+                     :on-failure [::events/set-page :login]}})) ; TODO: show error
