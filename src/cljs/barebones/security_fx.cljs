@@ -5,12 +5,6 @@
             [re-frame.core :as rf]))
 
 (rf/reg-event-fx
- ::handle-csrf-token
- (fn-traced
-  [_ [_ req {:keys [token]}]]
-  {:http-xhrio (assoc req :headers {:x-xsrf-token token})}))
-
-(rf/reg-event-fx
  ::get-csrf-token
  (fn-traced
   [_ [_ handlers]]  ; :on-success and :on-failure handlers
@@ -20,6 +14,12 @@
                  :timeout 10000
                  :response-format (ajax/json-response-format {:keywords? true})}
                 handlers)}))
+
+(rf/reg-event-fx
+ ::handle-csrf-token
+ (fn-traced
+  [_ [_ req {:keys [token]}]]
+  {:http-xhrio (assoc req :headers {:x-xsrf-token token})}))
 
 ;; An effect to request anti CSRF token which will then be used as X-XSRF-Token
 ;; header before making POST request. Effect argument is 100% the same as
