@@ -28,7 +28,4 @@
     ;; Content
     [:div#content-wrapper.col.border-left
      [:div.container
-      [:h1.border-bottom "Dashboard"]
-      [:button.btn.btn-primary
-       {:on-click #(rf/dispatch [::admin-events/test-ajax])}
-       "Test button"]]]]])
+      [:h1.border-bottom "Dashboard"]]]]])
