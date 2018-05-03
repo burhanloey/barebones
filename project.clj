@@ -14,6 +14,7 @@
                  [re-frame "0.10.5"]
                  [reagent "0.8.0"]
                  [ring "1.6.3"]
+                 [ring/ring-anti-forgery "1.2.0"]
                  [ring/ring-defaults "0.3.1"]
                  [ring/ring-json "0.4.0"]
                  [secretary "1.2.3"]]
