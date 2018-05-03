@@ -38,7 +38,7 @@
 ;;  ::login
 ;;  (fn-traced
 ;;   [{:keys [login-input]} _]
-;;   {:http-xhrio-xsrf {:method :post  <-- User :http-xhrio-xsrf instead of :http-xhrio
+;;   {:http-xhrio-xsrf {:method :post  <-- Use :http-xhrio-xsrf instead of :http-xhrio
 ;;                      :uri "/admin/login"
 ;;                      :timeout 10000
 ;;                      :response-format (ajax/json-response-format {:keywords? true})
