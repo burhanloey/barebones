@@ -8,12 +8,11 @@
 
 ;; Events
 
-(rf/reg-event-fx
+(rf/reg-event-db
  ::initialize-db
- [(rf/inject-cofx ::db/token-in-cookie)]
  (fn-traced
-  [{:keys [token]} _]
-  {:db (assoc db/default-db :token token)}))
+  [_ _]
+  db/default-db))
 
 (rf/reg-event-db
  ::set-page
@@ -22,13 +21,12 @@
   (assoc db :page page)))
 
 (rf/reg-event-fx
- ::verify-token
+ ::verify-identity
  (fn-traced
   [{:keys [db]} _]
   {:http-xhrio {:uri "/admin/api/v1/me"
                 :method :get
                 :timeout 10000
                 :response-format (ajax/json-response-format {:keywords? true})
-                :headers {"Authorization" (str "Token " (:token db))}
                 :on-success [::set-page :admin]
                 :on-failure [::set-page :login]}}))

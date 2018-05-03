@@ -1,5 +1,6 @@
 (ns barebones.login.events
   (:require [ajax.core :as ajax]
+            [barebones.events :as events]
             [barebones.login.db]
             [barebones.security-fx]
             [day8.re-frame.http-fx]
@@ -14,13 +15,14 @@
   {:http-xhrio-xsrf {:method :post
                      :uri "/admin/login"
                      :timeout 10000
+                     :params login-input
+                     :format (ajax/json-request-format)
                      :response-format (ajax/json-response-format {:keywords? true})
-                     :on-success [::login-success]
-                     :on-failure [::login-success]
-                     :body login-input}}))
+                     :on-success [::events/set-page :admin]
+                     :on-failure [::login-failed]}}))
 
 (rf/reg-event-db
- ::login-success
+ ::login-failed
  (fn-traced
   [db _]
   (js/console.log "Ehh")

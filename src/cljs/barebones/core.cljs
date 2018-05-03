@@ -18,6 +18,6 @@
 (defn ^:export init []
   (routes/app-routes)
   (rf/dispatch-sync [::events/initialize-db])
-  (rf/dispatch [::events/verify-token])
+  (rf/dispatch [::events/verify-identity])
   (dev-setup)
   (mount-root))

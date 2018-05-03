@@ -12,7 +12,7 @@
 (def conf (load-config))
 
 (def secret (:secret conf))
-(def backend (backends/jws {:secret secret}))
+(def backend (backends/session))
 
 (defn csrf-handler [req]
   (-> (response {:status 403 :message "Invalid anti-forgery token"})

@@ -1,5 +1,6 @@
 (ns barebones.admin.views
-  (:require [barebones.admin.subs :as admin-subs]
+  (:require [barebones.admin.events :as admin-events]
+            [barebones.admin.subs :as admin-subs]
             [re-frame.core :as rf]))
 
 (defn nav-link [{:keys [href icon]} text]
@@ -27,4 +28,7 @@
     ;; Content
     [:div#content-wrapper.col.border-left
      [:div.container
-      [:h1.border-bottom "Dashboard"]]]]])
+      [:h1.border-bottom "Dashboard"]
+      [:button.btn.btn-primary
+       {:on-click #(rf/dispatch [::admin-events/test-ajax])}
+       "Test button"]]]]])
