@@ -22,7 +22,7 @@
                 handlers)}))
 
 ;; An effect to request anti CSRF token which will then be used as X-XSRF-Token
-;; header before making POST request. Event argument is 100% the same as
+;; header before making POST request. Effect argument is 100% the same as
 ;; :http-xhrio effect.
 ;;
 ;; Example usage:
