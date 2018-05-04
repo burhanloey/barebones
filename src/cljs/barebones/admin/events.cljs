@@ -5,11 +5,20 @@
             [day8.re-frame.tracing :refer-macros [fn-traced]]
             [re-frame.core :as rf]))
 
-(rf/reg-event-db
+;; Events
+
+(rf/reg-event-fx
  ::set-panel
  (fn-traced
-  [db [_ panel]]
-  (assoc db :panel panel)))
+  [{:keys [db]} [_ panel]]
+  {:db (assoc db :panel panel)
+   :panel-switch true}))
+
+(rf/reg-event-db
+ ::reset-panel-content
+ (fn-traced
+  [db _]
+  (dissoc db :panel-content)))
 
 (rf/reg-event-fx
  ::logout
@@ -22,3 +31,11 @@
                      :response-format (ajax/json-response-format {:keywords? true})
                      :on-success [::events/set-page :login]
                      :on-failure [::events/set-page :admin]}}))
+
+
+;; Effects
+
+(rf/reg-fx
+ :panel-switch
+ (fn [_]
+   (rf/dispatch [::reset-panel-content])))

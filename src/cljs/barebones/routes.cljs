@@ -27,4 +27,7 @@
   (defroute "/calendar" []
     (rf/dispatch [::admin-events/set-panel "Calendar"]))
 
+  (defroute "/settings" []
+    (rf/dispatch [::admin-events/set-panel "Settings"]))
+
   (hook-browser-navigation!))
