@@ -41,6 +41,10 @@
       (-> (response {:status 401 :message "Wrong username/password"})
           (status 401)))))
 
+(defn logout [req]
+  (-> (response {})
+      (assoc :session {})))
+
 (defn me [req]
   (let [user (get-in req [:identity :user])]
     (response {:message (str "Hi, " user "!")})))
@@ -55,6 +59,7 @@
   (GET "/admin" [] views/admin-page)
   (GET "/token" [] token)
   (POST "/admin/login" [] login)
+  (POST "/admin/logout" [] logout)
   (context "/admin/api/v1" [] admin-api-v1-routes)
   (route/not-found (-> (response {:status 404 :message "Not found"})
                        (status 404))))

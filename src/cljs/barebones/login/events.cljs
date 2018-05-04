@@ -3,7 +3,6 @@
             [barebones.events :as events]
             [barebones.login.db]
             [barebones.security-fx]
-            [day8.re-frame.http-fx]
             [day8.re-frame.tracing :refer-macros [fn-traced]]
             [re-frame.core :as rf]))
 

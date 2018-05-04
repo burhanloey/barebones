@@ -16,7 +16,9 @@
    ;; Navbar
    [:nav.navbar.navbar-expand-lg.navbar-light.bg-light.border-bottom
     [:a.navbar-brand {:href "#"} "barebones"]
-    [:button.btn.btn-outline-success.ml-auto "Logout"]]
+    [:button.btn.btn-outline-success.ml-auto
+     {:on-click #(rf/dispatch [::admin-events/logout])}
+     "Logout"]]
 
    [:div.row
     ;; Nav left sidebar
