@@ -7,14 +7,14 @@ a.view-details {
 }
 
 .navbar {
-    margin: auto -15px;
+    margin: auto -1rem;
 }
 
-.nav-link {
-    margin-right: -15px;
+.nav .nav-link {
+    margin-right: -1rem;
 }
 
-.nav-link.active, .nav-link:hover {
+.nav .nav-link.active, .nav .nav-link:hover {
     background-color: #eeeeee;
     outline: 0;
 }
