@@ -24,13 +24,10 @@
     [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0"}]
     [:title "Admin Page"]
     (include-css
-     "https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
-     "sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4")
-    (include-css
      "https://use.fontawesome.com/releases/v5.0.10/css/all.css"
      "sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg")
     (include-css "/css/style.css")]
    [:body
-    [:div#app.container-fluid]
+    [:div#app]
     (include-js "js/compiled/app.js")
     [:script "barebones.core.init();"]]))

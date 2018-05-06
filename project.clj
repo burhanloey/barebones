@@ -19,18 +19,22 @@
                  [ring/ring-json "0.4.0"]
                  [secretary "1.2.3"]]
 
-  :plugins [[lein-cljsbuild "1.1.7"]
+  :plugins [[deraen/lein-sass4clj "0.3.1"]
+            [lein-cljsbuild "1.1.7"]
             [lein-ring "0.12.4"]]
 
   :ring {:handler barebones.handler/app}
 
   :source-paths ["src/clj"]
 
-  :resource-paths ["resources" "resources/public"]
+  :resource-paths ["resources"]
 
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
 
   :figwheel {:css-dirs ["resources/public/css"]}
+
+  :sass {:source-paths ["resources/scss"]
+         :target-path "resources/public/css"}
 
   :cljsbuild
   {:builds
@@ -57,7 +61,9 @@
              {:dependencies [[day8.re-frame/re-frame-10x "0.3.3-react16"]
                              [day8.re-frame/tracing "0.5.1"]
                              [javax.servlet/servlet-api "2.5"]
+                             [org.slf4j/slf4j-nop "1.7.13" :scope "test"]
                              [ring/ring-mock "0.3.2"]]
               :plugins [[lein-figwheel "0.5.15"]]}
              :prod
-             {:dependencies [[day8.re-frame/tracing-stubs "0.5.1"]]}})
+             {:dependencies [[day8.re-frame/tracing-stubs "0.5.1"]]
+              :sass {:output-style :compressed}}})

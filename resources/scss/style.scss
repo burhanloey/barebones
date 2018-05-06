@@ -1,0 +1,38 @@
+@import "../vendor/bulma/sass/utilities/initial-variables";
+@import "../vendor/bulma/sass/utilities/functions";
+
+// Set variables here:
+
+$turquoise: #209E91;
+$dark: #323232;
+$grey: #636363;
+$grey-dark: #4F4F4F;
+
+$menu-item-color: $grey-light;
+$menu-item-radius: 0;
+$menu-item-hover-color: $white-ter;
+$menu-item-hover-background-color: $turquoise;
+$menu-item-active-color: $white-ter;
+$menu-item-active-background-color: $turquoise;
+
+$navbar-item-color: $white-ter;
+$navbar-dropdown-item-hover-color: $turquoise;
+$navbar-dropdown-item-hover-background-color: $grey-dark;
+
+// Done setting variable
+
+@import "../vendor/bulma/bulma";
+
+#admin-page {
+    background: $dark;
+    min-height: 100vh;
+}
+
+#content-wrapper {
+    min-height: 100vh;
+    margin-left: -.75rem;
+}
+
+aside.menu a {
+    outline: 0;
+}

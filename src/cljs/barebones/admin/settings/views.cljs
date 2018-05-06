@@ -1,25 +1,43 @@
 (ns barebones.admin.settings.views)
 
+(defn change-password []
+  [:section.section
+   [:div.box.has-background-grey-dark
+    [:h3.title.is-6.has-text-white-ter.is-uppercase "Change password"]
+
+    [:div.field
+     [:label.label.has-text-white-ter
+      {:for "old-password"} "Old password"]
+     [:div.control
+      [:input#old-password.input {:type "password"}]]]
+
+    [:div.field
+     [:label.label.has-text-white-ter
+      {:for "new-password"} "New password"]
+     [:div.control
+      [:input#new-password.input {:type "password"}]]]
+
+    [:div.field
+     [:label.label.has-text-white-ter
+      {:for "confirm-password"} "Confirm new password"]
+     [:div.control
+      [:input#confirm-password.input {:type "password"}]]]
+
+    [:div.field
+     [:div.control
+      [:button.button.is-primary
+       "Update password"]]]]])
+
+(defn delete-account []
+  [:section.section
+   [:div.box.has-background-grey-dark
+    [:h3.title.is-6.has-text-white-ter.is-uppercase "Delete account"]
+
+    [:button.button.is-danger
+     "Delete my account"]]])
+
 (defn settings-panel []
-  [:div.col-md-6.mt-4
-   [:h3.border-bottom.pb-2.mb-4 "Change password"]
-
-   [:div.form-group
-    [:label {:for "oldPassword"} "Old password"]
-    [:input#oldPassword.form-control {:type "password"}]]
-
-   [:div.form-group
-    [:label {:for "newPassword"} "New password"]
-    [:input#newPassword.form-control {:type "password"}]]
-
-   [:div.form-group
-    [:label {:for "confirmPassword"} "Confirm new password"]
-    [:input#confirmPassword.form-control {:type "password"}]]
-
-   [:button.btn
-    "Update password"]
-
-   [:h3.border-bottom.pb-2.mt-5.mb-4.text-danger "Delete account"]
-
-   [:button.btn.btn-danger
-    "Delete my account"]])
+  [:div.columns
+   [:div.column.is-6
+    [change-password]
+    [delete-account]]])

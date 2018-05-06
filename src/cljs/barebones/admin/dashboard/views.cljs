@@ -1,34 +1,30 @@
 (ns barebones.admin.dashboard.views)
 
-(defn status-card [{:keys [icon background]} count text]
-  [:div.col-md-3.mb-3
-   [:div.card.text-white {:class (str "bg-" background)}
-    [:div.card-header
-     [:div.row
-      [:div.col icon]
-      [:div.col.text-right [:h1 count] text]]]
-
-    [:a.view-details {:href "#"}
-     [:div.card-footer.d-flex.bg-light {:class (str "text-" background)}
-      [:span "View Details"]
-      [:span.ml-auto [:i.fas.fa-arrow-circle-right]]]]]])
+(defn status-card [{:keys [icon]} count text]
+  [:div.column.is-4
+   [:div.box.has-text-white-ter.has-background-grey-dark
+    [:div.columns
+     [:div.column icon]
+     [:div.column.has-text-right
+      [:span.title.is-1.has-text-white count] [:br]
+      [:span text]]]]])
 
 (defn dashboard-panel []
-  [:div.mt-4
-   [:h3.border-bottom.pb-2.mb-4 "Issues"]
+  [:div
+   [:section.section
+    [:h3.title.is-6.has-text-white-ter.is-uppercase "Issues"]
 
-   [:div.row
-    [status-card
-     {:icon [:i.fas.fa-check.fa-5x]
-      :background "success"}
-     50 "Solved"]
+    [:div.columns
+     [:div.column.is-10
+      [:div.columns
+       [status-card
+        {:icon [:i.fas.fa-check.fa-5x]}
+        50 "Solved"]
 
-    [status-card
-     {:icon [:i.fas.fa-spinner.fa-5x]
-      :background "primary"}
-     25 "In Progress"]
+       [status-card
+        {:icon [:i.fas.fa-spinner.fa-5x]}
+        25 "In Progress"]
 
-    [status-card
-     {:icon [:i.fas.fa-list-ul.fa-5x]
-      :background "danger"}
-     5 "To Do"]]])
+       [status-card
+        {:icon [:i.fas.fa-list-ul.fa-5x]}
+        5 "To Do"]]]]]])

@@ -11,5 +11,5 @@
  :<- [::panel]
  (fn [panel [_ text]]
    (if (= text panel)
-     "active"
+     "is-active"
      "")))

@@ -5,28 +5,37 @@
 
 (defn login-page []
   (let [show-error? (rf/subscribe [::login-subs/show-error])]
-    [:div.col-md-4.mx-auto.mt-5
-     [:div.card
-      [:div.card-header "Sign in"]
-      [:div.card-body
+    [:div.container
+     [:section.section
+      [:div.columns
+       [:div.column.is-4.is-offset-4
+        [:div.box
 
-       [:form
-        [:div.form-group
-         [:input#username.form-control {:placeholder "Username" :type "text"}]]
+         [:p.title.is-6.is-center "Sign in"]
 
-        [:div.form-group
-         [:input#password.form-control {:placeholder "Password" :type "password"}]]
+         [:form
+          [:div.field
+           [:div.control
+            [:input#username.input {:placeholder "Username" :type "text"}]]]
 
-        [:div.form-group.form-check
-         [:input#remember.form-check-input {:type "checkbox"}]
-         [:label.form-check-label {:for "remember"} "Remember me"]]
+          [:div.field
+           [:div.control
+            [:input#password.input {:placeholder "Password" :type "password"}]]]
 
-        [:button.btn.btn-success.btn-block
-         {:on-click (fn [evt]
-                      (.preventDefault evt)
-                      (rf/dispatch [::login-events/login]))}
-         "Login"]]]]
+          [:div.field
+           [:div.control
+            [:label.checkbox
+             [:input#remember {:type "checkbox"}]
+             "Remember me"]]]
 
-     (when @show-error?
-       [:div.alert.alert-warning.mt-2.text-center
-        "Wrong username or password." [:br] "Guess which one was wrong!"])]))
+          [:div.field
+           [:div.control
+            [:button.button.is-primary.is-fullwidth
+             {:on-click (fn [evt]
+                          (.preventDefault evt)
+                          (rf/dispatch [::login-events/login]))}
+             "Login"]]]]]
+
+        (when @show-error?
+          [:div.notification.is-warning.has-text-centered
+           "Wrong username or password." [:br] "Guess which one was wrong!"])]]]]))
