@@ -42,7 +42,7 @@
        ;; Nav left sidebar
        [:aside.menu
         [:ul.menu-list
-         [nav-link {:href "#" :icon [:i.fas.fa-tachometer-alt]} "Dashboard"]
+         [nav-link {:href "#" :icon [:i.fas.fa-home]} "Dashboard"]
          [nav-link {:href "#/location" :icon [:i.fas.fa-map]} "Location"]
          [nav-link {:href "#/calendar" :icon [:i.far.fa-calendar-alt]} "Calendar"]
          [nav-link {:href "#/settings" :icon [:i.fas.fa-cog]} "Settings"]]]]
