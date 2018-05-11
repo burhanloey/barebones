@@ -29,5 +29,7 @@
     (include-css "/css/style.css")]
    [:body
     [:div#app]
+    (include-js "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js")
+    (include-js "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js")
     (include-js "js/compiled/app.js")
     [:script "barebones.core.init();"]]))
