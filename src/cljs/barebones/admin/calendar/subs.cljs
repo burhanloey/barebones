@@ -84,7 +84,7 @@
   "Generate data representation for calendar heatmap. The first week will be
   offset so that the first day of the week will always starts at Sunday.
 
-  `year-data-details` is a hashmap of date string to its details."
+  `year-data-details` is a list of details for each day."
   [year-data-details]
   (let [weeks (partition-all 7 (add-offset year-data-details))]
     (map-indexed (fn [idx week]
