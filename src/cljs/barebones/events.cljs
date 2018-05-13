@@ -13,18 +13,11 @@
   [_ _]
   db/default-db))
 
-(rf/reg-event-fx
+(rf/reg-event-db
  ::set-page
  (fn-traced
-  [{:keys [db]} [_ page]]
-  {:db (assoc db :page page)
-   :page-switch true}))
-
-(rf/reg-event-db
- ::reset-page-content
- (fn-traced
-  [db _]
-  (dissoc db :page-content)))
+  [db [_ page]]
+  (assoc db :page page)))
 
 (rf/reg-event-fx
  ::verify-identity
@@ -36,11 +29,3 @@
                 :response-format (ajax/json-response-format {:keywords? true})
                 :on-success [::set-page :admin]
                 :on-failure [::set-page :login]}}))
-
-
-;; Effects
-
-(rf/reg-fx
- :page-switch
- (fn [_]
-   (rf/dispatch [::reset-page-content])))

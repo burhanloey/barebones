@@ -10,6 +10,7 @@
                  [hiccup "1.0.5"]
                  [org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.10.238"]
+                 [org.clojure/core.async "0.4.474"]
                  [org.eclipse.jetty/jetty-server "9.4.9.v20180320"]
                  [re-frame "0.10.5"]
                  [reagent "0.8.0"]

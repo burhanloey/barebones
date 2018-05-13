@@ -1,44 +1,51 @@
 (ns barebones.admin.calendar.views
-  (:require [barebones.admin.calendar.subs :as calendar-subs]
+  (:require [barebones.admin.calendar.events :as calendar-events]
+            [barebones.admin.calendar.subs :as calendar-subs]
             [reagent.core :as r]
             [re-frame.core :as rf]))
 
 ;; Week chart
 
 (defn line-chart [data labels]
-  (r/create-class
-   {:component-did-mount
-    (fn []
-      (let [ctx (.getContext (js/document.getElementById "week-chart") "2d")]
-        (js/Chart.
-         ctx
-         (clj->js
-          {:type "line"
-           :data {:labels labels
-                  :datasets [{:label "Issue count"
-                              :backgroundColor "rgb(47, 129, 123)"
-                              :data data}]}
-           :options {:title {:text "Issue count by week"}
-                     :elements {:line {:tension 0}}
-                     :legend {:labels {:fontColor "white"}}
-                     :scales {:xAxes [{:type "time"
-                                       :time {:unit "day"}
-                                       :ticks {:fontColor "white"}}]
-                              :yAxes [{:ticks {:fontColor "white"
-                                               :beginAtZero true
-                                               :suggestedMax 5
-                                               :stepSize 1}}]}}}))))
+  (let [chart (atom nil)]
+    (r/create-class
+     {:component-did-mount
+      (fn [this]
+        (let [ctx (.getContext (r/dom-node this) "2d")]
+          (reset! chart (js/Chart.
+                         ctx
+                         (clj->js
+                          {:type "line"
+                           :data {:labels labels
+                                  :datasets [{:label "Issue count"
+                                              :backgroundColor "rgb(47, 129, 123)"
+                                              :data data}]}
+                           :options {:title {:text "Issue count by week"}
+                                     :elements {:line {:tension 0}}
+                                     :legend {:labels {:fontColor "white"}}
+                                     :scales
+                                     {:xAxes [{:type "time"
+                                               :time {:unit "day"}
+                                               :ticks {:fontColor "white"}}]
+                                      :yAxes [{:ticks {:fontColor "white"
+                                                       :beginAtZero true
+                                                       :suggestedMax 5
+                                                       :stepSize 1}}]}}})))))
 
-    :render
-    (fn []
-      [:div.box.has-background-grey-dark
-       [:h3.title.is-6.has-text-white-ter.is-uppercase "By week"]
-       [:canvas#week-chart]])}))
+      :component-will-update
+      (fn [_ [fn data labels]]
+        (rf/dispatch [::calendar-events/update-week-chart @chart data labels]))
+
+      :render
+      (fn []
+        [:canvas])})))
 
 (defn week-chart []
   (let [week-data (rf/subscribe [::calendar-subs/week-data])
         labels (rf/subscribe [::calendar-subs/last-7-dates])]
-    [line-chart @week-data @labels]))
+    [:div.box.has-background-grey-dark
+     [:h3.title.is-6.has-text-white-ter.is-uppercase "By week"]
+     [line-chart @week-data @labels]]))
 
 
 ;; Year chart

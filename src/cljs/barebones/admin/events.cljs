@@ -1,5 +1,6 @@
 (ns barebones.admin.events
   (:require [ajax.core :as ajax]
+            [barebones.admin.calendar.events :as calendar-events]
             [barebones.events :as events]
             [barebones.security-fx]
             [day8.re-frame.tracing :refer-macros [fn-traced]]
@@ -12,13 +13,7 @@
  (fn-traced
   [{:keys [db]} [_ panel]]
   {:db (assoc db :panel panel)
-   :panel-switch true}))
-
-(rf/reg-event-db
- ::reset-panel-content
- (fn-traced
-  [db _]
-  (dissoc db :panel-content)))
+   :panel-switch panel}))
 
 (rf/reg-event-fx
  ::logout
@@ -37,5 +32,7 @@
 
 (rf/reg-fx
  :panel-switch
- (fn [_]
-   (rf/dispatch [::reset-panel-content])))
+ (fn [panel]
+   (case panel
+     "Calendar" (rf/dispatch [::calendar-events/init-calendar])
+     nil)))
