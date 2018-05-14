@@ -1,7 +1,7 @@
 (ns barebones.admin.calendar.utils)
 
 (def size 15)
-(def color-shades ["#b5b5b5" "#5BFFF6" "#49CCC5" "#379994" "#256663" "#133332"])
+(def color-shades ["#eff3ff" "#c6dbef" "#9ecae1" "#6baed6" "#3182bd" "#08519c"])
 (def days ["Sun" "Mon" "Tue" "Wed" "Thu" "Fri" "Sat"])
 
 (defn choose-shade
@@ -27,7 +27,7 @@
 
   Takes optional :offset key to offset placement."
   [idx & {:keys [offset] :or {offset 0}}]
-  (+ (+ offset idx) (* size (inc idx))))
+  (+ (+ offset (* 3 idx)) (* size (inc idx))))
 
 (defn find-details
   "Find details for given day from data.

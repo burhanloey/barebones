@@ -18,7 +18,7 @@
     [:div#admin-page
 
      ;; Navbar
-     [:nav.navbar.is-dark {:role "navigation" :aria-label "main navigation"}
+     [:nav.navbar.is-link {:role "navigation" :aria-label "main navigation"}
       [:div.navbar-brand
        [:a.navbar-item {:href "#"} "barebones"]
 
@@ -32,7 +32,7 @@
         [:div.navbar-item.has-dropdown.is-hoverable
          [:a.navbar-link
           [:span.icon [:i.fas.fa-user]]]
-         [:div.navbar-dropdown.is-right.is-boxed.has-background-grey-dark
+         [:div.navbar-dropdown.is-right.is-boxed
           [:a.navbar-item
            {:on-click #(rf/dispatch [::admin-events/logout])}
            "Logout"]]]]]]
@@ -48,7 +48,7 @@
          [nav-link {:href "#/settings" :icon [:i.fas.fa-cog]} "Settings"]]]]
 
       ;; Content
-      [:div#content-wrapper.column.has-background-grey
+      [:div#content-wrapper.column
        (case @panel
          "Dashboard" [dashboard-panel]
          "Location" [location-panel]

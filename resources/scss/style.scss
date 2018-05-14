@@ -3,36 +3,40 @@
 
 // Set variables here:
 
-$turquoise: #209E91;
-$dark: #323232;
-$grey: #636363;
-$grey-dark: #4F4F4F;
+$box-radius: 0;
+$box-background-color: $white-bis;
 
 $menu-item-color: $grey-light;
 $menu-item-radius: 0;
-$menu-item-hover-color: $white-ter;
-$menu-item-hover-background-color: $turquoise;
-$menu-item-active-color: $white-ter;
-$menu-item-active-background-color: $turquoise;
-
-$navbar-item-color: $white-ter;
-$navbar-dropdown-item-hover-color: $turquoise;
-$navbar-dropdown-item-hover-background-color: $grey-dark;
+$menu-item-hover-color: $grey-light;
+$menu-item-hover-background-color: $grey-dark;
+$menu-item-active-color: $grey-light;
+$menu-item-active-background-color: $grey-dark;
 
 // Done setting variable
 
 @import "../vendor/bulma/bulma";
 
-#admin-page {
-    background: $dark;
+body {
     min-height: 100vh;
+    background: $grey-lighter;
+}
+
+#admin-page {
+    background: $black-ter;
 }
 
 #content-wrapper {
     min-height: 100vh;
+    background: $grey-lighter;
     margin-left: -.75rem;
 }
 
 aside.menu a {
     outline: 0;
+}
+
+svg rect {
+    stroke: #6baed6;
+    stroke-width: .5;
 }

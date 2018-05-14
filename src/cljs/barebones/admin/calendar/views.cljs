@@ -17,18 +17,17 @@
                          (clj->js
                           {:type "line"
                            :data {:labels labels
-                                  :datasets [{:label "Issue count"
-                                              :backgroundColor "rgb(47, 129, 123)"
-                                              :data data}]}
+                                  :datasets
+                                  [{:label "Issue count"
+                                    :backgroundColor "rgb(255, 56, 96, 0.5)"
+                                    :borderColor "rgb(255, 56, 96)"
+                                    :data data}]}
                            :options {:title {:text "Issue count by week"}
                                      :elements {:line {:tension 0}}
-                                     :legend {:labels {:fontColor "white"}}
                                      :scales
                                      {:xAxes [{:type "time"
-                                               :time {:unit "day"}
-                                               :ticks {:fontColor "white"}}]
-                                      :yAxes [{:ticks {:fontColor "white"
-                                                       :beginAtZero true
+                                               :time {:unit "day"}}]
+                                      :yAxes [{:ticks {:beginAtZero true
                                                        :suggestedMax 5
                                                        :stepSize 1}}]}}})))))
 
@@ -43,8 +42,8 @@
 (defn week-chart []
   (let [week-data (rf/subscribe [::calendar-subs/week-data])
         labels (rf/subscribe [::calendar-subs/last-7-dates])]
-    [:div.box.has-background-grey-dark
-     [:h3.title.is-6.has-text-white-ter.is-uppercase "By week"]
+    [:div.box
+     [:h3.title.is-6.is-uppercase "By week"]
      [line-chart @week-data @labels]]))
 
 
@@ -56,7 +55,8 @@
      (for [{:keys [key idx day y]} @days-legend]
        ^{:key key}
        [:text
-        {:text-anchor "start" :x 0 :y y :fill "#f0ffff"}
+        {:text-anchor "start" :x 0 :y y ;; :fill "#f0ffff"
+         }
         day])]))
 
 (defn months-legend []
@@ -65,7 +65,8 @@
      (for [{:keys [key idx month x]} @months-legend]
        ^{:key key}
        [:text
-        {:text-anchor "start" :x x :y 0 :fill "#f0ffff"}
+        {:text-anchor "start" :x x :y 0 ;; :fill "#f0ffff"
+         }
         month])]))
 
 (defn calendar-heatmap []
@@ -83,9 +84,9 @@
              [:title title]]))])]))
 
 (defn year-chart []
-  [:div.box.has-background-grey-dark
-   [:h3.title.is-6.has-text-white-ter.is-uppercase "By year"]
-   [:svg.has-background-grey
+  [:div.box
+   [:h3.title.is-6.is-uppercase "By year"]
+   [:svg
     {:width "100%" :height "100%" :viewBox "0 0 1048 150"}
     [:g {:transform "translate(10, 10)"}
      [calendar-heatmap]

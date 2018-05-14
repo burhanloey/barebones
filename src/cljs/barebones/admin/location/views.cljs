@@ -25,6 +25,6 @@
 (defn location-panel []
   [:div
    [:section.section
-    [:div.box.has-background-grey-dark
-     [:h3.title.is-6.has-text-white-ter.is-uppercase "Location"]
+    [:div.box
+     [:h3.title.is-6.is-uppercase "Location"]
      [world-map]]]])

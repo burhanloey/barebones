@@ -26,7 +26,7 @@
            [:div.control
             [:label.checkbox
              [:input#remember {:type "checkbox"}]
-             "Remember me"]]]
+             " Remember me"]]]
 
           [:div.field
            [:div.control

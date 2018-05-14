@@ -2,23 +2,23 @@
 
 (defn change-password []
   [:section.section
-   [:div.box.has-background-grey-dark
-    [:h3.title.is-6.has-text-white-ter.is-uppercase "Change password"]
+   [:div.box
+    [:h3.title.is-6.is-uppercase "Change password"]
 
     [:div.field
-     [:label.label.has-text-white-ter
+     [:label.label
       {:for "old-password"} "Old password"]
      [:div.control
       [:input#old-password.input {:type "password"}]]]
 
     [:div.field
-     [:label.label.has-text-white-ter
+     [:label.label
       {:for "new-password"} "New password"]
      [:div.control
       [:input#new-password.input {:type "password"}]]]
 
     [:div.field
-     [:label.label.has-text-white-ter
+     [:label.label
       {:for "confirm-password"} "Confirm new password"]
      [:div.control
       [:input#confirm-password.input {:type "password"}]]]
@@ -30,8 +30,8 @@
 
 (defn delete-account []
   [:section.section
-   [:div.box.has-background-grey-dark
-    [:h3.title.is-6.has-text-white-ter.is-uppercase "Delete account"]
+   [:div.box
+    [:h3.title.is-6.is-uppercase "Delete account"]
 
     [:button.button.is-danger
      "Delete my account"]]])
