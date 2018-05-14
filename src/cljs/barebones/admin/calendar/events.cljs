@@ -3,6 +3,7 @@
             [barebones.admin.calendar.utils :as utils]
             [cljs.core.async :refer [<! >! chan]]
             [day8.re-frame.tracing :refer-macros [fn-traced]]
+            [reagent.core :as r]
             [re-frame.core :as rf])
   (:require-macros [cljs.core.async :refer [go]]))
 
@@ -25,12 +26,19 @@
               "2018-05-09" 4}}))
 
 (rf/reg-event-fx
+ ::init-week-chart
+ (fn-traced
+  [_ [_ node data labels]]
+  {:week-chart-init {:node node
+                     :data data
+                     :labels labels}}))
+
+(rf/reg-event-fx
  ::update-week-chart
  (fn-traced
-  [_ [_ chart data labels]]
-  {:week-chart {:chart chart
-                :data data
-                :labels labels}}))
+  [_ [_ data labels]]
+  {:week-chart-update {:data data
+                       :labels labels}}))
 
 (rf/reg-event-db
  ::update-heatmap-data
@@ -59,12 +67,36 @@
 
 ;; Effects
 
+(def chart (atom nil))
+
 (rf/reg-fx
- :week-chart
- (fn [{:keys [chart data labels]}]
-   (set! (-> chart .-data .-datasets first .-data) (clj->js data))
-   (set! (-> chart .-data .-labels) (clj->js labels))
-   (.update chart)))
+ :week-chart-init
+ (fn [{:keys [node data labels]}]
+   (let [ctx (.getContext (r/dom-node node) "2d")]
+     (reset! chart (js/Chart.
+                    ctx
+                    (clj->js
+                     {:type "line"
+                      :data {:labels labels
+                             :datasets [{:label "Issue count"
+                                         :backgroundColor "rgb(255, 56, 96, 0.5)"
+                                         :borderColor "rgb(255, 56, 96)"
+                                         :data data}]}
+                      :options {:title {:text "Issue count by week"}
+                                :elements {:line {:tension 0}}
+                                :scales {:xAxes [{:type "time"
+                                                  :time {:unit "day"}}]
+                                         :yAxes [{:ticks {:beginAtZero true
+                                                          :suggestedMax 5
+                                                          :stepSize 1}}]}}}))))))
+
+(rf/reg-fx
+ :week-chart-update
+ (fn [{:keys [data labels]}]
+   (let [c @chart]
+     (aset c "data" "datasets" 0 "data" (clj->js data))
+     (aset c "data" "labels" (clj->js labels))
+     (.update c))))
 
 (rf/reg-fx
  :calendar

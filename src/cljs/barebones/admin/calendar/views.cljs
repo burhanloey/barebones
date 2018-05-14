@@ -7,44 +7,27 @@
 ;; Week chart
 
 (defn line-chart [data labels]
-  (let [chart (atom nil)]
-    (r/create-class
-     {:component-did-mount
-      (fn [this]
-        (let [ctx (.getContext (r/dom-node this) "2d")]
-          (reset! chart (js/Chart.
-                         ctx
-                         (clj->js
-                          {:type "line"
-                           :data {:labels labels
-                                  :datasets
-                                  [{:label "Issue count"
-                                    :backgroundColor "rgb(255, 56, 96, 0.5)"
-                                    :borderColor "rgb(255, 56, 96)"
-                                    :data data}]}
-                           :options {:title {:text "Issue count by week"}
-                                     :elements {:line {:tension 0}}
-                                     :scales
-                                     {:xAxes [{:type "time"
-                                               :time {:unit "day"}}]
-                                      :yAxes [{:ticks {:beginAtZero true
-                                                       :suggestedMax 5
-                                                       :stepSize 1}}]}}})))))
+  (r/create-class
+   {:component-did-mount
+    (fn [this]
+      (rf/dispatch [::calendar-events/init-week-chart this data labels]))
 
-      :component-will-update
-      (fn [_ [fn data labels]]
-        (rf/dispatch [::calendar-events/update-week-chart @chart data labels]))
+    :component-will-update
+    (fn [_ [_ data labels]]
+      (rf/dispatch [::calendar-events/update-week-chart data labels]))
 
-      :render
-      (fn []
-        [:canvas])})))
+    :display-name "week-chart"
+
+    :reagent-render
+    (fn [data labels]
+      [:canvas])}))
 
 (defn week-chart []
-  (let [week-data (rf/subscribe [::calendar-subs/week-data])
+  (let [data (rf/subscribe [::calendar-subs/week-data])
         labels (rf/subscribe [::calendar-subs/last-7-dates])]
     [:div.box
      [:h3.title.is-6.is-uppercase "By week"]
-     [line-chart @week-data @labels]]))
+     [line-chart @data @labels]]))
 
 
 ;; Year chart

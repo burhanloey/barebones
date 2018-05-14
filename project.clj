@@ -30,7 +30,11 @@
 
   :resource-paths ["resources"]
 
-  :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
+  :clean-targets ^{:protect false} ["resources/public/js/compiled"
+                                    "resources/public/css"
+                                    "target"]
+
+  :auto-clean false
 
   :figwheel {:css-dirs ["resources/public/css"]}
 
@@ -55,6 +59,9 @@
      :compiler {:closure-defines {goog.DEBUG false}
                 :main barebones.core
                 :output-to "resources/public/js/compiled/app.js"
+                :externs ["leaflet-externs.js"
+                          "moment-externs.js"
+                          "chart-externs.js"]
                 :optimizations :advanced
                 :pretty-print false}}]}
 
