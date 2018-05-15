@@ -26,4 +26,6 @@ To deploy:
 
 ## License
 
-Copyright © 2018 FIXME
+MIT License
+
+Copyright © 2018 Burhanuddin Baharuddin
