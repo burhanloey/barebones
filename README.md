@@ -2,6 +2,15 @@
 
 A bare-bones admin dashboard.
 
+I just put whatever I wanted to try to implement and so far these include:
+
+* Integration with Chart.js and Leaflet
+* GitHub style calendar heatmap
+
+## Screenshots
+
+![alt text](https://raw.githubusercontent.com/burhanloey/barebones/master/screenshots/calendar_heatmap.png "GitHub style calendar heatmap")
+
 ## Prerequisites
 
 You will need [Leiningen][] 2.0.0 or above installed.
