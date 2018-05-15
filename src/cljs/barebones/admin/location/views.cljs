@@ -14,7 +14,7 @@
             (.addTo l))
 
         (-> js/L
-            (.marker #js [4.848 100.737] 13)
+            (.marker #js [4.848 100.737])
             (.bindPopup "Issue #54 reported here")
             (.addTo l))))
 
