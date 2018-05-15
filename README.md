@@ -1,6 +1,6 @@
 # barebones
 
-FIXME
+A bare-bones admin dashboard.
 
 ## Prerequisites
 
@@ -10,9 +10,19 @@ You will need [Leiningen][] 2.0.0 or above installed.
 
 ## Running
 
-To start a web server for the application, run:
+To start web server for development (using GNU Screen), run:
 
-    lein ring server
+    screen -c screen
+    
+## Building
+
+To build the project for deployment, run:
+
+    ./make.sh
+
+To deploy:
+
+    java -jar target/barebones-<version>-standalone.jar
 
 ## License
 
