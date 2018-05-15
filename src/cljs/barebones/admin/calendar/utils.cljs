@@ -121,6 +121,7 @@
   (map-indexed (fn [idx day]
                  {:key (str "daylegend" idx)
                   :idx idx
+                  :shown (odd? idx)
                   :day day
                   :y (find-placement idx)})
                days))

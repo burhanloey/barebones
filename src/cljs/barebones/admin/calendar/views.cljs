@@ -35,12 +35,12 @@
 (defn days-legend []
   (let [days-legend (rf/subscribe [::calendar-subs/days-legend])]
     [:g {:transform "translate(0, 13)"}
-     (for [{:keys [key idx day y]} @days-legend]
-       ^{:key key}
-       [:text
-        {:text-anchor "start" :x 0 :y y ;; :fill "#f0ffff"
-         }
-        day])]))
+     (for [{:keys [key idx shown day y]} @days-legend]
+       (when shown
+         ^{:key key}
+         [:text
+          {:text-anchor "start" :x 0 :y y}
+          day]))]))
 
 (defn months-legend []
   (let [months-legend (rf/subscribe [::calendar-subs/months-legend])]
@@ -48,8 +48,7 @@
      (for [{:keys [key idx month x]} @months-legend]
        ^{:key key}
        [:text
-        {:text-anchor "start" :x x :y 0 ;; :fill "#f0ffff"
-         }
+        {:text-anchor "start" :x x :y 0}
         month])]))
 
 (defn calendar-heatmap []
