@@ -11,10 +11,6 @@ I just put whatever I wanted to try to implement and so far these include:
 
 ![alt text](https://raw.githubusercontent.com/burhanloey/barebones/master/screenshots/calendar_heatmap.png "GitHub style calendar heatmap")
 
-## Credits
-
-* [color_ramps](https://github.com/madams1/color_ramps) for calendar heatmap
-
 ## Prerequisites
 
 You will need [Leiningen][] 2.0.0 or above installed.
@@ -36,6 +32,10 @@ To build the project for deployment, run:
 To deploy:
 
     java -jar target/barebones-<version>-standalone.jar
+
+## Credits
+
+* [color_ramps](https://github.com/madams1/color_ramps) for calendar heatmap
 
 ## License
 
