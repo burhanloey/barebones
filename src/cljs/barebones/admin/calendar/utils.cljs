@@ -27,7 +27,8 @@
 
   Takes optional :offset key to offset placement."
   [idx & {:keys [offset] :or {offset 0}}]
-  (+ (+ offset (* 3 idx)) (* size (inc idx))))
+  (let [padding 3]
+    (+ (+ offset (* padding idx)) (* size (inc idx)))))
 
 (defn find-details
   "Find details for given day from data.
